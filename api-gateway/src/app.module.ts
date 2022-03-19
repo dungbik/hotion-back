@@ -2,7 +2,6 @@ import { Module } from '@nestjs/common';
 import { IntrospectAndCompose } from '@apollo/gateway';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloGatewayDriver, ApolloGatewayDriverConfig } from '@nestjs/apollo';
-import { FileModule } from './file/file.module';
 import FileUploadDataSource from '@profusion/apollo-federation-upload';
 
 @Module({
@@ -23,7 +22,6 @@ import FileUploadDataSource from '@profusion/apollo-federation-upload';
         }),
       },
     }),
-    FileModule,
   ],
   controllers: [],
   providers: [],

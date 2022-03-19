@@ -2,12 +2,13 @@ import { Resolver, Query, Mutation, Args } from '@nestjs/graphql';
 import { UploadFileOutput } from './dtos/upload-image.dto';
 import { Upload, GraphQLUpload } from 'graphql-upload';
 import { FileService } from './file.service';
+import { File } from './file.schema';
 
-@Resolver(() => UploadFileOutput)
+@Resolver(() => File)
 export class FileResolver {
   constructor(private readonly fileService: FileService) {}
 
-  @Query(() => [UploadFileOutput])
+  @Query(() => [File])
   async files() {
     return [];
   }

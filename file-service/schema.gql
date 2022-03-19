@@ -18,8 +18,13 @@ type UploadFileOutput {
   url: String!
 }
 
+type File {
+  id: ID!
+  originalName: String!
+}
+
 type Query {
-  files: [UploadFileOutput!]!
+  files: [File!]!
 }
 
 type Mutation {

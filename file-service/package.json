@@ -27,7 +27,6 @@
     "@nestjs/config": "^2.0.0",
     "@nestjs/core": "^8.0.0",
     "@nestjs/graphql": "^10.0.7",
-    "@nestjs/microservices": "^8.4.1",
     "@nestjs/platform-express": "^8.0.0",
     "apollo-server-express": "^3.6.4",
     "aws-sdk": "^2.1096.0",

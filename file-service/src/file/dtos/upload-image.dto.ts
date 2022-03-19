@@ -1,4 +1,4 @@
-import { Field, InputType, ObjectType, Directive, ID } from '@nestjs/graphql';
+import { Field, InputType, ObjectType, ID } from '@nestjs/graphql';
 import { GraphQLUpload, FileUpload } from 'graphql-upload';
 
 @InputType()
