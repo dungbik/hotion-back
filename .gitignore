@@ -3,6 +3,7 @@
 # Edit at https://www.toptal.com/developers/gitignore?templates=macos,visualstudiocode,nextjs
 
 .env
+db/data
 
 ### macOS ###
 # General

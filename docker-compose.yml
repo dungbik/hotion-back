@@ -1,0 +1,61 @@
+version: "3.8"
+services:
+  gateway:
+    build: ./api-gateway
+    restart: always
+    hostname: gateway
+    ports:
+      - "3000:3000"
+    networks:
+      - backend
+    links:
+      - file
+      - user
+      - work-space
+    command: sh -c "dockerize -wait tcp://user:3001 -wait tcp://work-space:3002 -wait tcp://file:3003 -timeout 30s yarn start:dev"
+
+  file:
+    build: ./file-service
+    restart: always
+    hostname: file
+    networks:
+      - backend
+    links:
+      - db
+
+  user:
+    build: ./user-service
+    restart: always
+    hostname: user
+    networks:
+      - backend
+    links:
+      - db
+
+  work-space:
+    build: ./work-space-service
+    restart: always
+    hostname: work-space
+    networks:
+      - backend
+    links:
+      - db
+
+  db:
+    image: postgres:latest
+    container_name: postgres
+    restart: always
+    ports:
+      - "5432:5432"
+    environment:
+      POSTGRES_USER: root
+      POSTGRES_PASSWORD: root
+    volumes:
+      - ./db/init/create-table.sql:/docker-entrypoint-initdb.d/create-table.sql
+      - ./db/data:/var/lib/postgresql/data
+    networks:
+      - backend
+
+networks:
+  backend:
+    driver: bridge
