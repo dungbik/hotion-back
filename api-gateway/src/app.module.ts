@@ -18,8 +18,7 @@ import FileUploadDataSource from '@profusion/apollo-federation-upload';
           subgraphs: [
             { name: 'users', url: 'http://localhost:3001/graphql' },
             { name: 'work-spaces', url: 'http://localhost:3002/graphql' },
-            { name: 'pages', url: 'http://localhost:3003/graphql' },
-            { name: 'files', url: 'http://localhost:3004/graphql' },
+            { name: 'files', url: 'http://localhost:3003/graphql' },
           ],
         }),
       },
