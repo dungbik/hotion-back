@@ -3,6 +3,7 @@ import { IntrospectAndCompose } from '@apollo/gateway';
 import { GraphQLModule } from '@nestjs/graphql';
 import { ApolloGatewayDriver, ApolloGatewayDriverConfig } from '@nestjs/apollo';
 import { FileModule } from './file/file.module';
+import FileUploadDataSource from '@profusion/apollo-federation-upload';
 
 @Module({
   imports: [
@@ -10,14 +11,15 @@ import { FileModule } from './file/file.module';
       driver: ApolloGatewayDriver,
       server: {
         playground: true,
-        cors: true,
       },
       gateway: {
+        buildService: ({ url }) => new FileUploadDataSource({ url }),
         supergraphSdl: new IntrospectAndCompose({
           subgraphs: [
             { name: 'users', url: 'http://localhost:3001/graphql' },
             { name: 'work-spaces', url: 'http://localhost:3002/graphql' },
             { name: 'pages', url: 'http://localhost:3003/graphql' },
+            { name: 'files', url: 'http://localhost:3004/graphql' },
           ],
         }),
       },
