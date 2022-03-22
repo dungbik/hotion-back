@@ -12,6 +12,10 @@ services:
       - file
       - user
       - work-space
+    depends_on:
+      - file
+      - user
+      - work-space
     command: sh -c "dockerize -wait tcp://user:3001 -wait tcp://work-space:3002 -wait tcp://file:3003 -timeout 30s yarn start:dev"
 
   file:
@@ -22,6 +26,8 @@ services:
       - backend
     links:
       - db
+    depends_on:
+      - db
 
   user:
     build: ./user-service
@@ -31,6 +37,8 @@ services:
       - backend
     links:
       - db
+    depends_on:
+      - db
 
   work-space:
     build: ./work-space-service
@@ -39,6 +47,19 @@ services:
     networks:
       - backend
     links:
+      - db
+    depends_on:
+      - db
+
+  auth:
+    build: ./auth-service
+    restart: always
+    hostname: auth
+    networks:
+      - backend
+    links:
+      - db
+    depends_on:
       - db
 
   db:
