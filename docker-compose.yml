@@ -44,6 +44,8 @@ services:
     build: ./work-space-service
     restart: always
     hostname: work-space
+    volumes:
+      - ./work-space-service/src:/var/www/work-space/src
     networks:
       - backend
     links:
